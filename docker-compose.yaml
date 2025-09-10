@@ -9,12 +9,12 @@ services:
     volumes:
       -
         type: bind
-        source: /mnt/coolify/filebrowser/folder
+        source: /mnt/coolify
         target: /folder
         isDirectory: true
       -
         type: bind
-        source: /mnt/coolify/filebrowser/data
+        source: /mnt/coolify/data
         target: /home/filebrowser/data
         isDirectory: true
       -
