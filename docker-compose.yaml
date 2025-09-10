@@ -5,6 +5,6 @@ services:
       FILEBROWSER_CONFIG: "/home/filebrowser/data/config.yaml"
       FILEBROWSER_ADMIN_PASSWORD: "admin"
     volumes:
-      - /mnt/coolify/filebrowser/folder:/folder
+      - /mnt/coolify/:/folder
       - /mnt/coolify/filebrowser/data:/home/filebrowser/data
       - /mnt/coolify/filebrowser/data/config.yaml:/home/filebrowser/data/config.yaml
