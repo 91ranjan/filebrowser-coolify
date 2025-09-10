@@ -1,26 +1,35 @@
 services:
   filebrowser:
-    image: 'gtstef/filebrowser'
+    image: filebrowser/filebrowser:latest
+    container_name: filebrowser
     environment:
-      - FILEBROWSER_CONFIG
-      - FILEBROWSER_ADMIN_PASSWORD
-#      FILEBROWSER_CONFIG: "./data/config.yaml" -> add to coolify environment variables.
-#      FILEBROWSER_ADMIN_PASSWORD: admin -> add to coolify environment variables.
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
     volumes:
       -
         type: bind
-        source: ./folder
+        source: /mnt/coolify/filebrowser/folder
         target: /folder
         isDirectory: true
       -
         type: bind
-        source: ./data
+        source: /mnt/coolify/filebrowser/data
         target: /home/filebrowser/data
         isDirectory: true
       -
         type: bind
-        source: ./data/config.yaml
+        source: /mnt/coolify/filebrowser/data/config.yaml
         target: /home/filebrowser/data/config.yaml
         isDirectory: false
-        content: "server:\n  sources:\n    - path: /folder # corresponds to the folder mounted above in docker-compose\n      config:\n        defaultEnabled: true # add source for all users by default \nauth:\n  adminUsername: admin"
-
+        content: |
+          server:
+            sources:
+              - path: /folder # corresponds to the folder mounted above
+                config:
+                  defaultEnabled: true # add source for all users by default
+          auth:
+            adminUsername: admin
+    ports:
+      - "8080:80"
+    restart: unless-stopped
