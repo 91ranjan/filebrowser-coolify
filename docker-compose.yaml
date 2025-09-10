@@ -7,18 +7,15 @@ services:
 #      FILEBROWSER_CONFIG: "./data/config.yaml" -> add to coolify environment variables.
 #      FILEBROWSER_ADMIN_PASSWORD: admin -> add to coolify environment variables.
     volumes:
-      -
-        type: bind
+      - type: bind
         source: /mnt/coolify/filebrowser/folder
         target: /folder
         isDirectory: true
-      -
-        type: bind
+      - type: bind
         source: /mnt/coolify/filebrowser/data
         target: /home/filebrowser/data
         isDirectory: true
-      -
-        type: bind
+      - type: bind
         source: /mnt/coolify/filebrowser/data/config.yaml
         target: /home/filebrowser/data/config.yaml
         isDirectory: false
